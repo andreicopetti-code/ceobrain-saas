@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   CEO Brain — Design Tokens
+   ============================================================ */
+
+:root {
+  /* Cores primárias */
+  --brand:       #6366f1;
+  --brand-hover: #4f46e5;
+  --brand-light: #e0e7ff;
+  --brand-dark:  #3730a3;
+
+  /* Feedback */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --danger:  #ef4444;
+  --info:    #3b82f6;
+
+  /* Superfícies (light mode) */
+  --bg-primary:   #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary:  #f3f4f6;
+
+  /* Texto (light mode) */
+  --text1: #111827;
+  --text2: #6b7280;
+  --text3: #9ca3af;
+
+  /* Bordas */
+  --border: #e5e7eb;
+
+  /* Kanban stages */
+  --stage-prospect:    #6366f1;
+  --stage-negotiation: #f59e0b;
+  --stage-proposal:    #3b82f6;
+  --stage-closing:     #8b5cf6;
+  --stage-won:         #22c55e;
+  --stage-lost:        #ef4444;
+
+  /* Sombras */
+  --shadow-sm:  0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md:  0 4px 6px -1px rgb(0 0 0 / 0.1);
+  --shadow-lg:  0 10px 15px -3px rgb(0 0 0 / 0.1);
+  --shadow-modal: 0 20px 60px -10px rgb(0 0 0 / 0.3);
+
+  /* Dimensões */
+  --sidebar-width:  240px;
+  --header-height:  56px;
+  --radius-card:    12px;
+  --radius-btn:     8px;
+}
+
+/* Dark mode */
+.dark {
+  --bg-primary:   #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary:  #374151;
+  --text1:        #f9fafb;
+  --text2:        #d1d5db;
+  --text3:        #9ca3af;
+  --border:       #374151;
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text1);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   Componentes utilitários
+   ============================================================ */
+
+@layer components {
+  /* Botões */
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-btn font-medium text-sm
+           transition-all duration-150 cursor-pointer select-none disabled:opacity-50
+           disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2
+           focus-visible:ring-brand focus-visible:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-hover active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply btn bg-transparent text-text-primary border border-border
+           hover:bg-surface-secondary active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply btn bg-transparent text-text-secondary hover:bg-surface-secondary
+           hover:text-text-primary active:scale-95;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger text-white hover:bg-red-600 active:scale-95;
+  }
+
+  /* Cards */
+  .card {
+    @apply bg-white rounded-card shadow-card border border-border p-4
+           dark:bg-surface-dark dark:border-border-dark;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full px-3 py-2 rounded-btn border border-border bg-white text-text-primary
+           text-sm placeholder:text-text-muted transition-colors duration-150
+           focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent
+           dark:bg-surface-dark-secondary dark:border-border-dark dark:text-text-dark-primary;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-text-primary mb-1
+           dark:text-text-dark-primary;
+  }
+
+  /* Badge de status */
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .badge-trial    { @apply badge bg-yellow-100 text-yellow-800; }
+  .badge-active   { @apply badge bg-green-100 text-green-800; }
+  .badge-past-due { @apply badge bg-red-100 text-red-800; }
+  .badge-canceled { @apply badge bg-gray-100 text-gray-600; }
+
+  /* Scrollbar customizada */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar { width: 4px; height: 4px; }
+  .scrollbar-thin::-webkit-scrollbar-track { background: transparent; }
+  .scrollbar-thin::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+}
