@@ -1,4 +1,3 @@
-@"
 'use client'
 
 import { useEffect, useState } from 'react'
@@ -56,4 +55,3 @@ export default function LoginPage() {
     </div>
   )
 }
-"@ | Set-Content src/app/\(auth\)/login/page.tsx
